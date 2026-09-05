@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const { getBuses, getBusById, createBus, updateBus, deleteBus, calculateFare } = require('../controllers/busController');
+const { protect, admin } = require('../middleware/auth');
+router.get('/', getBuses);
+router.get('/:id', getBusById);
+router.post('/calculate-fare', protect, calculateFare);
+router.post('/', protect, admin, createBus);
+router.put('/:id', protect, admin, updateBus);
+router.delete('/:id', protect, admin, deleteBus);
+module.exports = router;
