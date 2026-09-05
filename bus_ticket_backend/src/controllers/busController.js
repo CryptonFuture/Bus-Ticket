@@ -61,7 +61,7 @@ exports.calculateFare = async (req, res) => {
     const bus = await Bus.findById(busId);
     if (!bus) return res.status(404).json({ success: false, message: 'Bus not found' });
 
-    const pythonUrl = process.env.PYTHON_SERVICE_URL || 'http://localhost:8000';
+    const pythonUrl = process.env.PYTHON_SERVICE_URL;
     try {
       const response = await axios.post(`${pythonUrl}/calculate-fare`, {
         base_fare: bus.baseFare,

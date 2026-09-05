@@ -15,7 +15,7 @@ exports.createBooking = async (req, res) => {
     }
 
     let totalFare = 0;
-    const pythonUrl = process.env.PYTHON_SERVICE_URL || 'http://localhost:8000';
+    const pythonUrl = process.env.PYTHON_SERVICE_URL;
     try {
       const fareRes = await axios.post(`${pythonUrl}/calculate-fare`, {
         base_fare: bus.baseFare,
